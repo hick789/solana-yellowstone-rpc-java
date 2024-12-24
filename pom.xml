@@ -12,6 +12,9 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>17</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -38,4 +41,14 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>kr.motd.maven</groupId>
+        <artifactId>os-maven-plugin</artifactId>
+        <version>1.7.1</version>
+      </extension>
+    </extensions>
+  </build>
 </project>
