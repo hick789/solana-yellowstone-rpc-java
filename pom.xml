@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.hick798</groupId>
-  <artifactId>solana-yellowstone-rpc-java</artifactId>
+  <artifactId>solana-yellowstone-grpc-java</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>solana-yellowstone-rpc-java</name>
+  <name>solana-yellowstone-grpc-java</name>
   <url>http://maven.apache.org</url>
 
   <properties>
