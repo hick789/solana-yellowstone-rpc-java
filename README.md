@@ -1,4 +1,4 @@
-example:
+example
 
 ```java
 import geyser.*;
