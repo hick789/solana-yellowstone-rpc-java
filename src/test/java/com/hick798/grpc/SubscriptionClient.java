@@ -1,10 +1,15 @@
 package com.hick798.grpc;
 
+import com.google.protobuf.ByteString;
 import geyser.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
+import solana.storage.ConfirmedBlock.Message;
+import solana.storage.ConfirmedBlock.TransactionStatusMeta;
+//import org.bitcoinj.core.Base58;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 
 
@@ -29,7 +34,17 @@ public class SubscriptionClient {
         StreamObserver<SubscribeUpdate> responseObserver = new StreamObserver<SubscribeUpdate>() {
             @Override
             public void onNext(SubscribeUpdate tx) {
-                System.out.println(LocalDateTime.now()+"->"+tx.getTransaction().getSlot());
+
+                //当遇到ByteString类型数据时，要用Base58进行编码，默认的toString是用的UTF-8
+                //1，比如获取 Signature
+                System.out.println(Base58.encode(tx.getTransaction().getTransaction().getSignature().toByteArray()));
+
+                //2，比如获取account_keys
+                Message message = tx.getTransaction().getTransaction().getTransaction().getMessage();
+                for (int i = 0; i < message.getAccountKeysCount(); i++) {
+                    System.out.println(i+":"+Base58.encode(message.getAccountKeys(i).toByteArray()));
+                }
+//                System.out.println("Timestamp: " + LocalDateTime.now() + " -> Transaction: " + tx.getTransaction());
             }
 
             @Override
